@@ -1,0 +1,93 @@
+version: '3.8'
+
+services:
+  # Zookeeper - Required for Kafka cluster coordination
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: fugitive-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper/data
+      - zookeeper-logs:/var/lib/zookeeper/log
+
+  # Kafka - Distributed event log with long-term retention
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: fugitive-kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://localhost:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      # Long-term retention for data replay (30 days default, configurable per topic)
+      KAFKA_LOG_RETENTION_MS: 2592000000  # 30 days
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824  # 1GB segments
+      KAFKA_LOG_RETENTION_CHECK_INTERVAL_MS: 300000  # 5 minutes
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+
+  # Splash - Headless browser for JavaScript-heavy sites
+  splash:
+    image: scrapinghub/splash:3.5
+    container_name: fugitive-splash
+    ports:
+      - "8050:8050"
+    command: --max-timeout 120 --slots 10
+    environment:
+      SPLASH_MAX_TIMEOUT: 120
+    volumes:
+      - ../phase1_acquisition/splash_scripts:/etc/splash/lua_scripts:ro
+
+  # PostgreSQL - Evidence Store for processed documents
+  postgres:
+    image: postgres:16-alpine
+    container_name: fugitive-postgres
+    environment:
+      POSTGRES_DB: fugitive_evidence
+      POSTGRES_USER: fugitive_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme_in_production}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ../database/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fugitive_admin -d fugitive_evidence"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Kafka UI - Web interface for monitoring Kafka topics
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: fugitive-kafka-ui
+    depends_on:
+      - kafka
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: fugitive-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+volumes:
+  zookeeper-data:
+  zookeeper-logs:
+  kafka-data:
+  postgres-data:
+
+networks:
+  default:
+    name: fugitive-network

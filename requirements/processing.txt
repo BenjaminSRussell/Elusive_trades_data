@@ -1,0 +1,8 @@
+# PDF and OCR processing dependencies
+PyMuPDF==1.23.8
+pikepdf==8.10.1
+opencv-python==4.8.1.78
+pytesseract==0.3.10
+ocrmypdf==15.4.4
+Pillow==10.1.0
+numpy==1.26.2

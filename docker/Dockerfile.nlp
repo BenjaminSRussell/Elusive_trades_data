@@ -1,0 +1,30 @@
+FROM python:3.11-slim
+
+LABEL maintainer="Fugitive Data Pipeline"
+LABEL description="NLP service with spaCy transformers for NER and Relation Extraction"
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY requirements/base.txt requirements/nlp.txt ./requirements/
+RUN pip install --no-cache-dir -r requirements/base.txt \
+    && pip install --no-cache-dir -r requirements/nlp.txt
+
+# Download spaCy transformer model
+RUN python -m spacy download en_core_web_trf
+
+# Copy NLP code
+COPY phase3_nlp /app/phase3_nlp
+COPY config /app/config
+
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app/phase3_nlp
+
+CMD ["python", "ner/train.py"]
