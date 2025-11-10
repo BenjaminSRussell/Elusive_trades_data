@@ -50,6 +50,9 @@ shell-kafka:
 shell-postgres:
 	docker exec -it fugitive-postgres psql -U fugitive_admin -d fugitive_evidence
 
+shell-neo4j:
+	docker exec -it fugitive-neo4j cypher-shell -u neo4j -p password
+
 clean:
 	@echo "Cleaning up..."
 	@find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
@@ -59,10 +62,17 @@ clean:
 	@echo "Cleanup complete"
 
 test:
-	@echo "Running tests..."
-	pytest tests/ -v
+	@echo "Running integration tests..."
+	python run_integration_test.py
+
+test-real:
+	@echo "Running real-world validation tests..."
+	pytest tests/validation/test_real_world_scenarios.py -v
 
 # Spider commands
+scrape-test:
+	cd phase1_acquisition/scrapers && scrapy crawl realworld_test
+
 scrape-goodman:
 	cd phase1_acquisition/scrapers && scrapy crawl goodman
 
@@ -82,6 +92,17 @@ run-nlp:
 # Training commands
 train-ner:
 	python phase3_nlp/ner/train.py
+
+# Graph commands
+populate-graph:
+	python phase4_knowledge_graph/consumers/graph_populator.py
+
+init-graph-schema:
+	python phase4_knowledge_graph/schema/graph_schema.py
+
+# API commands
+run-api:
+	cd phase5_api && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 # Kafka management
 create-topics:

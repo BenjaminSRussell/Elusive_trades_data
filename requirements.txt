@@ -6,3 +6,5 @@
 -r requirements/scrapy.txt
 -r requirements/processing.txt
 -r requirements/nlp.txt
+-r requirements/graph.txt
+-r requirements/api.txt
