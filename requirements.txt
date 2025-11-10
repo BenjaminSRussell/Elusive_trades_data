@@ -1,0 +1,10 @@
+# Combined requirements for Fugitive Data Pipeline
+# Install all: pip install -r requirements.txt
+# Or install by component: pip install -r requirements/base.txt
+
+-r requirements/base.txt
+-r requirements/scrapy.txt
+-r requirements/processing.txt
+-r requirements/nlp.txt
+-r requirements/graph.txt
+-r requirements/api.txt
