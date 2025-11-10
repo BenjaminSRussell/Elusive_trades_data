@@ -1,0 +1,17 @@
+{
+  "test_class": "TestCrossReferenceDetection",
+  "timestamp": "20251110_151024",
+  "results": [
+    {
+      "test": "replacements",
+      "timestamp": "2025-11-10T15:10:24.746322",
+      "data": {
+        "original_part": "0131M00008P",
+        "timestamp": "2025-11-10T15:10:24.746316",
+        "replacements": [],
+        "has_replacement": false,
+        "total_found": 0
+      }
+    }
+  ]
+}

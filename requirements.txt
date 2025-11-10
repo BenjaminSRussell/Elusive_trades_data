@@ -1,10 +1,20 @@
-# Combined requirements for Fugitive Data Pipeline
-# Install all: pip install -r requirements.txt
-# Or install by component: pip install -r requirements/base.txt
+# HVAC Parts Search System Requirements
 
--r requirements/base.txt
--r requirements/scrapy.txt
--r requirements/processing.txt
--r requirements/nlp.txt
--r requirements/graph.txt
--r requirements/api.txt
+# Core dependencies
+requests>=2.31.0
+python-dateutil>=2.8.2
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Zero-shot classification (optional, for Phase 2)
+# Uncomment these lines if you want to use the classifier with transformers
+# transformers>=4.36.0
+# torch>=2.1.0
+# sentencepiece>=0.1.99
+
+# Development tools
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0

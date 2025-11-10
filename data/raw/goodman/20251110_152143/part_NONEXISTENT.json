@@ -1,0 +1,20 @@
+{
+  "api": "goodman",
+  "part_number": "NONEXISTENT",
+  "status": "found",
+  "data": {
+    "part_number": "NONEXISTENT",
+    "description": "Capacitor, Dual Run 40+5 MFD",
+    "manufacturer": "Goodman",
+    "status": "active",
+    "price": 24.99,
+    "in_stock": true,
+    "specifications": {
+      "voltage": "440V",
+      "type": "Dual Run Capacitor",
+      "mfd": "40+5"
+    },
+    "replacements": [],
+    "superseded_by": null
+  }
+}

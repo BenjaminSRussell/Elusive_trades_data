@@ -1,0 +1,16 @@
+{
+  "api": "carrier",
+  "model_number": "ARUF37C14",
+  "status": "found",
+  "data": {
+    "model": "ARUF37C14",
+    "description": "Furnace",
+    "parts": [
+      {
+        "part_number": "P291-4053RS",
+        "description": "Capacitor",
+        "quantity": 1
+      }
+    ]
+  }
+}

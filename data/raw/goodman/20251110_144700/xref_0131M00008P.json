@@ -1,0 +1,16 @@
+{
+  "api": "goodman",
+  "source_part": "0131M00008P",
+  "cross_references": [
+    {
+      "manufacturer": "Carrier",
+      "part_number": "P291-4053RS",
+      "equivalency": "exact"
+    },
+    {
+      "manufacturer": "Trane",
+      "part_number": "CAP050450440RU",
+      "equivalency": "equivalent"
+    }
+  ]
+}

@@ -1,0 +1,1121 @@
+{
+  "timestamp": "2025-11-10T12:27:11.196553",
+  "total_parts_tested": 10,
+  "total_apis": 5,
+  "total_test_cases": 50,
+  "coverage": {
+    "fully_covered": 0,
+    "partial_coverage": 10,
+    "not_covered": 0,
+    "overall_percentage": 36.0
+  },
+  "api_coverage": {
+    "supco": {
+      "found": 4,
+      "total": 10,
+      "percentage": 40.0
+    },
+    "standard_motor": {
+      "found": 4,
+      "total": 10,
+      "percentage": 40.0
+    },
+    "goodman": {
+      "found": 2,
+      "total": 10,
+      "percentage": 20.0
+    },
+    "carrier": {
+      "found": 2,
+      "total": 10,
+      "percentage": 20.0
+    },
+    "johnstone": {
+      "found": 6,
+      "total": 10,
+      "percentage": 60.0
+    }
+  },
+  "part_summaries": {
+    "0131M00008P": {
+      "part_id": "0131M00008P",
+      "total_apis": 5,
+      "found_count": 2,
+      "apis_found_in": [
+        "goodman",
+        "johnstone"
+      ],
+      "replacement_found": "0131M00008PS",
+      "success_rate": 40.0
+    },
+    "ICM282A": {
+      "part_id": "ICM282A",
+      "total_apis": 5,
+      "found_count": 3,
+      "apis_found_in": [
+        "supco",
+        "standard_motor",
+        "johnstone"
+      ],
+      "replacement_found": "ICM283",
+      "success_rate": 60.0
+    },
+    "S9200U1000": {
+      "part_id": "S9200U1000",
+      "total_apis": 5,
+      "found_count": 2,
+      "apis_found_in": [
+        "standard_motor",
+        "johnstone"
+      ],
+      "replacement_found": null,
+      "success_rate": 40.0
+    },
+    "ST9120U": {
+      "part_id": "ST9120U",
+      "total_apis": 5,
+      "found_count": 2,
+      "apis_found_in": [
+        "standard_motor",
+        "johnstone"
+      ],
+      "replacement_found": "S9200U1000",
+      "success_rate": 40.0
+    },
+    "TRCFD405": {
+      "part_id": "TRCFD405",
+      "total_apis": 5,
+      "found_count": 2,
+      "apis_found_in": [
+        "supco",
+        "johnstone"
+      ],
+      "replacement_found": null,
+      "success_rate": 40.0
+    },
+    "HC41AE235": {
+      "part_id": "HC41AE235",
+      "total_apis": 5,
+      "found_count": 3,
+      "apis_found_in": [
+        "standard_motor",
+        "carrier",
+        "johnstone"
+      ],
+      "replacement_found": null,
+      "success_rate": 60.0
+    },
+    "SFCAP40D5440R": {
+      "part_id": "SFCAP40D5440R",
+      "total_apis": 5,
+      "found_count": 1,
+      "apis_found_in": [
+        "supco"
+      ],
+      "replacement_found": null,
+      "success_rate": 20.0
+    },
+    "0131M00008PS": {
+      "part_id": "0131M00008PS",
+      "total_apis": 5,
+      "found_count": 1,
+      "apis_found_in": [
+        "goodman"
+      ],
+      "replacement_found": null,
+      "success_rate": 20.0
+    },
+    "HC39GE208": {
+      "part_id": "HC39GE208",
+      "total_apis": 5,
+      "found_count": 1,
+      "apis_found_in": [
+        "carrier"
+      ],
+      "replacement_found": null,
+      "success_rate": 20.0
+    },
+    "POC-FD505A": {
+      "part_id": "POC-FD505A",
+      "total_apis": 5,
+      "found_count": 1,
+      "apis_found_in": [
+        "supco"
+      ],
+      "replacement_found": null,
+      "success_rate": 20.0
+    }
+  },
+  "all_results": [
+    {
+      "part_id": "0131M00008P",
+      "api_name": "supco",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "0131M00008P",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "0131M00008P",
+      "api_name": "standard_motor",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "0131M00008P",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "0131M00008P",
+      "api_name": "goodman",
+      "found": true,
+      "source_url": "https://www.goodmanmfg.com/products",
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "0131M00008P",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "0131M00008P",
+      "api_name": "carrier",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "0131M00008P",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "0131M00008P",
+      "api_name": "johnstone",
+      "found": true,
+      "source_url": "https://www.johnstonesupply.com",
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "0131M00008P",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "ICM282A",
+      "api_name": "supco",
+      "found": true,
+      "source_url": "https://www.supco.com/web/supco/hvacr-parts",
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "ICM282A",
+        "resolved_part": "ICM283",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "ICM282A",
+      "api_name": "standard_motor",
+      "found": true,
+      "source_url": "https://www.standardmotorproducts.com",
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "ICM282A",
+        "resolved_part": "ICM283",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "ICM282A",
+      "api_name": "goodman",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "ICM282A",
+        "resolved_part": "ICM283",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "ICM282A",
+      "api_name": "carrier",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "ICM282A",
+        "resolved_part": "ICM283",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "ICM282A",
+      "api_name": "johnstone",
+      "found": true,
+      "source_url": "https://www.johnstonesupply.com",
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "ICM282A",
+        "resolved_part": "ICM283",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "S9200U1000",
+      "api_name": "supco",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "S9200U1000",
+        "resolved_part": "S9200U1000",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "S9200U1000",
+      "api_name": "standard_motor",
+      "found": true,
+      "source_url": "https://www.standardmotorproducts.com",
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "S9200U1000",
+        "resolved_part": "S9200U1000",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "S9200U1000",
+      "api_name": "goodman",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "S9200U1000",
+        "resolved_part": "S9200U1000",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "S9200U1000",
+      "api_name": "carrier",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "S9200U1000",
+        "resolved_part": "S9200U1000",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "S9200U1000",
+      "api_name": "johnstone",
+      "found": true,
+      "source_url": "https://www.johnstonesupply.com",
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "S9200U1000",
+        "resolved_part": "S9200U1000",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "ST9120U",
+      "api_name": "supco",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "ST9120U",
+        "resolved_part": "S9200U1000",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "ST9120U",
+      "api_name": "standard_motor",
+      "found": true,
+      "source_url": "https://www.standardmotorproducts.com",
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "ST9120U",
+        "resolved_part": "S9200U1000",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "ST9120U",
+      "api_name": "goodman",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "ST9120U",
+        "resolved_part": "S9200U1000",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "ST9120U",
+      "api_name": "carrier",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "ST9120U",
+        "resolved_part": "S9200U1000",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "ST9120U",
+      "api_name": "johnstone",
+      "found": true,
+      "source_url": "https://www.johnstonesupply.com",
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "ST9120U",
+        "resolved_part": "S9200U1000",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "TRCFD405",
+      "api_name": "supco",
+      "found": true,
+      "source_url": "https://www.supco.com/web/supco/hvacr-parts",
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "TRCFD405",
+        "resolved_part": "TRCFD405",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "TRCFD405",
+      "api_name": "standard_motor",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "TRCFD405",
+        "resolved_part": "TRCFD405",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "TRCFD405",
+      "api_name": "goodman",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "TRCFD405",
+        "resolved_part": "TRCFD405",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "TRCFD405",
+      "api_name": "carrier",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "TRCFD405",
+        "resolved_part": "TRCFD405",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "TRCFD405",
+      "api_name": "johnstone",
+      "found": true,
+      "source_url": "https://www.johnstonesupply.com",
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "TRCFD405",
+        "resolved_part": "TRCFD405",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC41AE235",
+      "api_name": "supco",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "HC41AE235",
+        "resolved_part": "HC41AE235",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC41AE235",
+      "api_name": "standard_motor",
+      "found": true,
+      "source_url": "https://www.standardmotorproducts.com",
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "HC41AE235",
+        "resolved_part": "HC41AE235",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC41AE235",
+      "api_name": "goodman",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "HC41AE235",
+        "resolved_part": "HC41AE235",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC41AE235",
+      "api_name": "carrier",
+      "found": true,
+      "source_url": "https://www.carrierenterpriseparts.com",
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "HC41AE235",
+        "resolved_part": "HC41AE235",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC41AE235",
+      "api_name": "johnstone",
+      "found": true,
+      "source_url": "https://www.johnstonesupply.com",
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "HC41AE235",
+        "resolved_part": "HC41AE235",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "SFCAP40D5440R",
+      "api_name": "supco",
+      "found": true,
+      "source_url": "https://www.supco.com/web/supco/hvacr-parts",
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "SFCAP40D5440R",
+        "resolved_part": "SFCAP40D5440R",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "SFCAP40D5440R",
+      "api_name": "standard_motor",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "SFCAP40D5440R",
+        "resolved_part": "SFCAP40D5440R",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "SFCAP40D5440R",
+      "api_name": "goodman",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "SFCAP40D5440R",
+        "resolved_part": "SFCAP40D5440R",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "SFCAP40D5440R",
+      "api_name": "carrier",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "SFCAP40D5440R",
+        "resolved_part": "SFCAP40D5440R",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "SFCAP40D5440R",
+      "api_name": "johnstone",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "SFCAP40D5440R",
+        "resolved_part": "SFCAP40D5440R",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "0131M00008PS",
+      "api_name": "supco",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "0131M00008PS",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "0131M00008PS",
+      "api_name": "standard_motor",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "0131M00008PS",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "0131M00008PS",
+      "api_name": "goodman",
+      "found": true,
+      "source_url": "https://www.goodmanmfg.com/products",
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "0131M00008PS",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "0131M00008PS",
+      "api_name": "carrier",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "0131M00008PS",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "0131M00008PS",
+      "api_name": "johnstone",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "0131M00008PS",
+        "resolved_part": "0131M00008PS",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC39GE208",
+      "api_name": "supco",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "HC39GE208",
+        "resolved_part": "HC39GE208",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC39GE208",
+      "api_name": "standard_motor",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "HC39GE208",
+        "resolved_part": "HC39GE208",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC39GE208",
+      "api_name": "goodman",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "HC39GE208",
+        "resolved_part": "HC39GE208",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC39GE208",
+      "api_name": "carrier",
+      "found": true,
+      "source_url": "https://www.carrierenterpriseparts.com",
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "HC39GE208",
+        "resolved_part": "HC39GE208",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "HC39GE208",
+      "api_name": "johnstone",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "HC39GE208",
+        "resolved_part": "HC39GE208",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "POC-FD505A",
+      "api_name": "supco",
+      "found": true,
+      "source_url": "https://www.supco.com/web/supco/hvacr-parts",
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "ICM284",
+          "TRCFD405",
+          "SFCAP40D5440R",
+          "POC-FD505A"
+        ],
+        "query_part": "POC-FD505A",
+        "resolved_part": "POC-FD505A",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "POC-FD505A",
+      "api_name": "standard_motor",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "ICM282A",
+          "ICM283",
+          "S9200U1000",
+          "ST9120U",
+          "HC41AE235"
+        ],
+        "query_part": "POC-FD505A",
+        "resolved_part": "POC-FD505A",
+        "requires_auth": false,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "POC-FD505A",
+      "api_name": "goodman",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "0131M00008PS",
+          "0131M00430SF"
+        ],
+        "query_part": "POC-FD505A",
+        "resolved_part": "POC-FD505A",
+        "requires_auth": false,
+        "requires_splash": true
+      },
+      "error": null
+    },
+    {
+      "part_id": "POC-FD505A",
+      "api_name": "carrier",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "HC41AE235",
+          "HC39GE208",
+          "HC40GR233"
+        ],
+        "query_part": "POC-FD505A",
+        "resolved_part": "POC-FD505A",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    },
+    {
+      "part_id": "POC-FD505A",
+      "api_name": "johnstone",
+      "found": false,
+      "source_url": null,
+      "details": {
+        "api_inventory": [
+          "0131M00008P",
+          "ICM282A",
+          "S9200U1000",
+          "TRCFD405",
+          "HC41AE235"
+        ],
+        "query_part": "POC-FD505A",
+        "resolved_part": "POC-FD505A",
+        "requires_auth": true,
+        "requires_splash": false
+      },
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "api": "johnstone",
+  "model_number": "ARUF37C14",
+  "status": "found",
+  "data": {
+    "model": "ARUF37C14",
+    "parts_list": [
+      {
+        "part_number": "0131M00008P",
+        "description": "Capacitor",
+        "price": 24.99,
+        "in_stock": true
+      }
+    ]
+  }
+}

@@ -1,7 +1,0 @@
-# NLP and Machine Learning dependencies
-spacy==3.7.2
-spacy-transformers==1.3.4
-# Use this to download: python -m spacy download en_core_web_trf
-torch==2.1.1
-transformers==4.36.0
-thinc==8.2.1

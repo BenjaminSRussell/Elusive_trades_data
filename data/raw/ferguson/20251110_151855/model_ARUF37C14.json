@@ -1,0 +1,17 @@
+{
+  "api": "ferguson",
+  "model_number": "ARUF37C14",
+  "status": "found",
+  "data": {
+    "model": "ARUF37C14",
+    "manufacturer": "Goodman",
+    "parts": [
+      {
+        "part_number": "0131M00008P",
+        "description": "Capacitor",
+        "price": 24.99,
+        "in_stock": true
+      }
+    ]
+  }
+}

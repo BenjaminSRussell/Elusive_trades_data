@@ -1,0 +1,1685 @@
+{
+  "part_number": "0131M00008P",
+  "timestamp": "2025-11-10T16:07:50.605922",
+  "matches": [
+    {
+      "api": "carrier",
+      "session": "20251110_152143",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "carrier",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Run Capacitor 40+5 MFD 440V",
+          "manufacturer": "Carrier",
+          "status": "active",
+          "price": 26.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Run"
+          },
+          "replaces": [],
+          "replaced_by": null
+        }
+      }
+    },
+    {
+      "api": "carrier",
+      "session": "20251110_144652",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "carrier",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Run Capacitor 40+5 MFD 440V",
+          "manufacturer": "Carrier",
+          "status": "active",
+          "price": 26.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Run"
+          },
+          "replaces": [],
+          "replaced_by": null
+        }
+      }
+    },
+    {
+      "api": "carrier",
+      "session": "20251110_151855",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "carrier",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Run Capacitor 40+5 MFD 440V",
+          "manufacturer": "Carrier",
+          "status": "active",
+          "price": 26.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Run"
+          },
+          "replaces": [],
+          "replaced_by": null
+        }
+      }
+    },
+    {
+      "api": "carrier",
+      "session": "20251110_151807",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "carrier",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Run Capacitor 40+5 MFD 440V",
+          "manufacturer": "Carrier",
+          "status": "active",
+          "price": 26.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Run"
+          },
+          "replaces": [],
+          "replaced_by": null
+        }
+      }
+    },
+    {
+      "api": "carrier",
+      "session": "20251110_160748",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "carrier",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Run Capacitor 40+5 MFD 440V",
+          "manufacturer": "Carrier",
+          "status": "active",
+          "price": 26.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Run"
+          },
+          "replaces": [],
+          "replaced_by": null
+        }
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_152143",
+      "file": "model_ARUF37C14.json",
+      "data": {
+        "api": "goodman",
+        "model_number": "ARUF37C14",
+        "status": "found",
+        "data": {
+          "model": "ARUF37C14",
+          "description": "Air Handler",
+          "parts": [
+            {
+              "part_number": "0131M00008P",
+              "description": "Capacitor",
+              "quantity": 1
+            },
+            {
+              "part_number": "B1340021",
+              "description": "Blower Motor",
+              "quantity": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_152143",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "goodman",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor, Dual Run 40+5 MFD",
+          "manufacturer": "Goodman",
+          "status": "active",
+          "price": 24.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "type": "Dual Run Capacitor",
+            "mfd": "40+5"
+          },
+          "replacements": [],
+          "superseded_by": null
+        }
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_144652",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "goodman",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor, Dual Run 40+5 MFD",
+          "manufacturer": "Goodman",
+          "status": "active",
+          "price": 24.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "type": "Dual Run Capacitor",
+            "mfd": "40+5"
+          },
+          "replacements": [],
+          "superseded_by": null
+        }
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_151855",
+      "file": "model_ARUF37C14.json",
+      "data": {
+        "api": "goodman",
+        "model_number": "ARUF37C14",
+        "status": "found",
+        "data": {
+          "model": "ARUF37C14",
+          "description": "Air Handler",
+          "parts": [
+            {
+              "part_number": "0131M00008P",
+              "description": "Capacitor",
+              "quantity": 1
+            },
+            {
+              "part_number": "B1340021",
+              "description": "Blower Motor",
+              "quantity": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_151855",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "goodman",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor, Dual Run 40+5 MFD",
+          "manufacturer": "Goodman",
+          "status": "active",
+          "price": 24.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "type": "Dual Run Capacitor",
+            "mfd": "40+5"
+          },
+          "replacements": [],
+          "superseded_by": null
+        }
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_151807",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "goodman",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor, Dual Run 40+5 MFD",
+          "manufacturer": "Goodman",
+          "status": "active",
+          "price": 24.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "type": "Dual Run Capacitor",
+            "mfd": "40+5"
+          },
+          "replacements": [],
+          "superseded_by": null
+        }
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_144700",
+      "file": "xref_0131M00008P.json",
+      "data": {
+        "api": "goodman",
+        "source_part": "0131M00008P",
+        "cross_references": [
+          {
+            "manufacturer": "Carrier",
+            "part_number": "P291-4053RS",
+            "equivalency": "exact"
+          },
+          {
+            "manufacturer": "Trane",
+            "part_number": "CAP050450440RU",
+            "equivalency": "equivalent"
+          }
+        ]
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_144700",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "goodman",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor, Dual Run 40+5 MFD",
+          "manufacturer": "Goodman",
+          "status": "active",
+          "price": 24.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "type": "Dual Run Capacitor",
+            "mfd": "40+5"
+          },
+          "replacements": [],
+          "superseded_by": null
+        }
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_160748",
+      "file": "model_ARUF37C14.json",
+      "data": {
+        "api": "goodman",
+        "model_number": "ARUF37C14",
+        "status": "found",
+        "data": {
+          "model": "ARUF37C14",
+          "description": "Air Handler",
+          "parts": [
+            {
+              "part_number": "0131M00008P",
+              "description": "Capacitor",
+              "quantity": 1
+            },
+            {
+              "part_number": "B1340021",
+              "description": "Blower Motor",
+              "quantity": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "api": "goodman",
+      "session": "20251110_160748",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "goodman",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor, Dual Run 40+5 MFD",
+          "manufacturer": "Goodman",
+          "status": "active",
+          "price": 24.99,
+          "in_stock": true,
+          "specifications": {
+            "voltage": "440V",
+            "type": "Dual Run Capacitor",
+            "mfd": "40+5"
+          },
+          "replacements": [],
+          "superseded_by": null
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "model_ARUF37C14.json",
+      "data": {
+        "api": "johnstone",
+        "model_number": "ARUF37C14",
+        "status": "found",
+        "data": {
+          "model": "ARUF37C14",
+          "parts_list": [
+            {
+              "part_number": "0131M00008P",
+              "description": "Capacitor",
+              "price": 24.99,
+              "in_stock": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "part_Part#12345.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "Part#12345",
+        "status": "found",
+        "data": {
+          "part_number": "Part#12345",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "part_\n\n.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "\n\n",
+        "status": "found",
+        "data": {
+          "part_number": "\n\n",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "part_.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "",
+        "status": "found",
+        "data": {
+          "part_number": "",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "part_TEST123.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "TEST123",
+        "status": "found",
+        "data": {
+          "part_number": "TEST123",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "part_P291-4053RS.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "P291-4053RS",
+        "status": "found",
+        "data": {
+          "part_number": "P291-4053RS",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "part_NONEXISTENT.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "NONEXISTENT",
+        "status": "found",
+        "data": {
+          "part_number": "NONEXISTENT",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "part_B1340021.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "B1340021",
+        "status": "found",
+        "data": {
+          "part_number": "B1340021",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_152143",
+      "file": "part_   .json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "   ",
+        "status": "found",
+        "data": {
+          "part_number": "   ",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_144652",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "model_ARUF37C14.json",
+      "data": {
+        "api": "johnstone",
+        "model_number": "ARUF37C14",
+        "status": "found",
+        "data": {
+          "model": "ARUF37C14",
+          "parts_list": [
+            {
+              "part_number": "0131M00008P",
+              "description": "Capacitor",
+              "price": 24.99,
+              "in_stock": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "part_Part#12345.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "Part#12345",
+        "status": "found",
+        "data": {
+          "part_number": "Part#12345",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "part_\n\n.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "\n\n",
+        "status": "found",
+        "data": {
+          "part_number": "\n\n",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "part_.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "",
+        "status": "found",
+        "data": {
+          "part_number": "",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "part_TEST123.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "TEST123",
+        "status": "found",
+        "data": {
+          "part_number": "TEST123",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "part_P291-4053RS.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "P291-4053RS",
+        "status": "found",
+        "data": {
+          "part_number": "P291-4053RS",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "part_NONEXISTENT.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "NONEXISTENT",
+        "status": "found",
+        "data": {
+          "part_number": "NONEXISTENT",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "part_B1340021.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "B1340021",
+        "status": "found",
+        "data": {
+          "part_number": "B1340021",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151855",
+      "file": "part_   .json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "   ",
+        "status": "found",
+        "data": {
+          "part_number": "   ",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_151807",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_160748",
+      "file": "model_ARUF37C14.json",
+      "data": {
+        "api": "johnstone",
+        "model_number": "ARUF37C14",
+        "status": "found",
+        "data": {
+          "model": "ARUF37C14",
+          "parts_list": [
+            {
+              "part_number": "0131M00008P",
+              "description": "Capacitor",
+              "price": 24.99,
+              "in_stock": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "api": "johnstone",
+      "session": "20251110_160748",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "johnstone",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Dual Round Capacitor 40+5 MFD 440V",
+          "manufacturer": "Multiple Brands Available",
+          "in_stock": true,
+          "pricing": {
+            "retail": 29.99,
+            "contractor": 21.99
+          },
+          "availability": {
+            "warehouse": true,
+            "local_branch": true,
+            "quantity_available": 45
+          },
+          "brands": [
+            {
+              "name": "Goodman",
+              "part_number": "0131M00008P",
+              "price": 24.99
+            },
+            {
+              "name": "Carrier",
+              "part_number": "P291-4053RS",
+              "price": 26.99
+            },
+            {
+              "name": "Universal",
+              "part_number": "C4405R",
+              "price": 19.99
+            }
+          ],
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40+5 MFD",
+            "type": "Dual Round"
+          }
+        }
+      }
+    },
+    {
+      "api": "ferguson",
+      "session": "20251110_152143",
+      "file": "model_ARUF37C14.json",
+      "data": {
+        "api": "ferguson",
+        "model_number": "ARUF37C14",
+        "status": "found",
+        "data": {
+          "model": "ARUF37C14",
+          "manufacturer": "Goodman",
+          "parts": [
+            {
+              "part_number": "0131M00008P",
+              "description": "Capacitor",
+              "price": 24.99,
+              "in_stock": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "api": "ferguson",
+      "session": "20251110_152143",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "ferguson",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor 40/5 MFD 440V Round",
+          "manufacturer": "Various",
+          "in_stock": true,
+          "price": 27.5,
+          "availability": {
+            "warehouse": true,
+            "ship_time": "1-2 days",
+            "stock_quantity": 120
+          },
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40/5 MFD",
+            "type": "Dual Run",
+            "shape": "Round"
+          },
+          "product_info": {
+            "upc": "123456789012",
+            "weight": "1.5 lbs",
+            "dimensions": "2.5\" x 5.5\""
+          }
+        }
+      }
+    },
+    {
+      "api": "ferguson",
+      "session": "20251110_144652",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "ferguson",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor 40/5 MFD 440V Round",
+          "manufacturer": "Various",
+          "in_stock": true,
+          "price": 27.5,
+          "availability": {
+            "warehouse": true,
+            "ship_time": "1-2 days",
+            "stock_quantity": 120
+          },
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40/5 MFD",
+            "type": "Dual Run",
+            "shape": "Round"
+          },
+          "product_info": {
+            "upc": "123456789012",
+            "weight": "1.5 lbs",
+            "dimensions": "2.5\" x 5.5\""
+          }
+        }
+      }
+    },
+    {
+      "api": "ferguson",
+      "session": "20251110_151855",
+      "file": "model_ARUF37C14.json",
+      "data": {
+        "api": "ferguson",
+        "model_number": "ARUF37C14",
+        "status": "found",
+        "data": {
+          "model": "ARUF37C14",
+          "manufacturer": "Goodman",
+          "parts": [
+            {
+              "part_number": "0131M00008P",
+              "description": "Capacitor",
+              "price": 24.99,
+              "in_stock": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "api": "ferguson",
+      "session": "20251110_151855",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "ferguson",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor 40/5 MFD 440V Round",
+          "manufacturer": "Various",
+          "in_stock": true,
+          "price": 27.5,
+          "availability": {
+            "warehouse": true,
+            "ship_time": "1-2 days",
+            "stock_quantity": 120
+          },
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40/5 MFD",
+            "type": "Dual Run",
+            "shape": "Round"
+          },
+          "product_info": {
+            "upc": "123456789012",
+            "weight": "1.5 lbs",
+            "dimensions": "2.5\" x 5.5\""
+          }
+        }
+      }
+    },
+    {
+      "api": "ferguson",
+      "session": "20251110_151807",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "ferguson",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor 40/5 MFD 440V Round",
+          "manufacturer": "Various",
+          "in_stock": true,
+          "price": 27.5,
+          "availability": {
+            "warehouse": true,
+            "ship_time": "1-2 days",
+            "stock_quantity": 120
+          },
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40/5 MFD",
+            "type": "Dual Run",
+            "shape": "Round"
+          },
+          "product_info": {
+            "upc": "123456789012",
+            "weight": "1.5 lbs",
+            "dimensions": "2.5\" x 5.5\""
+          }
+        }
+      }
+    },
+    {
+      "api": "ferguson",
+      "session": "20251110_160748",
+      "file": "model_ARUF37C14.json",
+      "data": {
+        "api": "ferguson",
+        "model_number": "ARUF37C14",
+        "status": "found",
+        "data": {
+          "model": "ARUF37C14",
+          "manufacturer": "Goodman",
+          "parts": [
+            {
+              "part_number": "0131M00008P",
+              "description": "Capacitor",
+              "price": 24.99,
+              "in_stock": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "api": "ferguson",
+      "session": "20251110_160748",
+      "file": "part_0131M00008P.json",
+      "data": {
+        "api": "ferguson",
+        "part_number": "0131M00008P",
+        "status": "found",
+        "data": {
+          "part_number": "0131M00008P",
+          "description": "Capacitor 40/5 MFD 440V Round",
+          "manufacturer": "Various",
+          "in_stock": true,
+          "price": 27.5,
+          "availability": {
+            "warehouse": true,
+            "ship_time": "1-2 days",
+            "stock_quantity": 120
+          },
+          "specifications": {
+            "voltage": "440V",
+            "capacitance": "40/5 MFD",
+            "type": "Dual Run",
+            "shape": "Round"
+          },
+          "product_info": {
+            "upc": "123456789012",
+            "weight": "1.5 lbs",
+            "dimensions": "2.5\" x 5.5\""
+          }
+        }
+      }
+    }
+  ],
+  "cross_references": [
+    {
+      "manufacturer": "Carrier",
+      "part_number": "P291-4053RS",
+      "equivalency": "exact"
+    },
+    {
+      "manufacturer": "Trane",
+      "part_number": "CAP050450440RU",
+      "equivalency": "equivalent"
+    }
+  ],
+  "replacements": [],
+  "summary": {
+    "total_matches": 47,
+    "apis_with_data": [
+      "carrier",
+      "goodman",
+      "johnstone",
+      "ferguson"
+    ],
+    "has_replacement": false,
+    "is_deprecated": false
+  }
+}

@@ -1,0 +1,388 @@
+{
+  "test_class": "TestRepeatingModelNumbers",
+  "timestamp": "20251110_152143",
+  "results": [
+    {
+      "test": "model_variations",
+      "timestamp": "2025-11-10T15:21:43.872900",
+      "data": {
+        "ARUF37C14": {
+          "model_number": "ARUF37C14",
+          "timestamp": "2025-11-10T15:21:43.870469",
+          "apis_queried": [
+            "goodman",
+            "carrier",
+            "johnstone",
+            "ferguson"
+          ],
+          "results": {
+            "goodman": {
+              "status": "success",
+              "data": {
+                "api": "goodman",
+                "model_number": "ARUF37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF37C14",
+                  "description": "Air Handler",
+                  "parts": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "quantity": 1
+                    },
+                    {
+                      "part_number": "B1340021",
+                      "description": "Blower Motor",
+                      "quantity": 1
+                    }
+                  ]
+                }
+              }
+            },
+            "carrier": {
+              "status": "success",
+              "data": {
+                "api": "carrier",
+                "model_number": "ARUF37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF37C14",
+                  "description": "Furnace",
+                  "parts": [
+                    {
+                      "part_number": "P291-4053RS",
+                      "description": "Capacitor",
+                      "quantity": 1
+                    }
+                  ]
+                }
+              }
+            },
+            "johnstone": {
+              "status": "success",
+              "data": {
+                "api": "johnstone",
+                "model_number": "ARUF37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF37C14",
+                  "parts_list": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "price": 24.99,
+                      "in_stock": true
+                    }
+                  ]
+                }
+              }
+            },
+            "ferguson": {
+              "status": "success",
+              "data": {
+                "api": "ferguson",
+                "model_number": "ARUF37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF37C14",
+                  "manufacturer": "Goodman",
+                  "parts": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "price": 24.99,
+                      "in_stock": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "ARUF-37C14": {
+          "model_number": "ARUF-37C14",
+          "timestamp": "2025-11-10T15:21:43.871025",
+          "apis_queried": [
+            "goodman",
+            "carrier",
+            "johnstone",
+            "ferguson"
+          ],
+          "results": {
+            "goodman": {
+              "status": "success",
+              "data": {
+                "api": "goodman",
+                "model_number": "ARUF-37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF-37C14",
+                  "description": "Air Handler",
+                  "parts": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "quantity": 1
+                    },
+                    {
+                      "part_number": "B1340021",
+                      "description": "Blower Motor",
+                      "quantity": 1
+                    }
+                  ]
+                }
+              }
+            },
+            "carrier": {
+              "status": "success",
+              "data": {
+                "api": "carrier",
+                "model_number": "ARUF-37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF-37C14",
+                  "description": "Furnace",
+                  "parts": [
+                    {
+                      "part_number": "P291-4053RS",
+                      "description": "Capacitor",
+                      "quantity": 1
+                    }
+                  ]
+                }
+              }
+            },
+            "johnstone": {
+              "status": "success",
+              "data": {
+                "api": "johnstone",
+                "model_number": "ARUF-37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF-37C14",
+                  "parts_list": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "price": 24.99,
+                      "in_stock": true
+                    }
+                  ]
+                }
+              }
+            },
+            "ferguson": {
+              "status": "success",
+              "data": {
+                "api": "ferguson",
+                "model_number": "ARUF-37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF-37C14",
+                  "manufacturer": "Goodman",
+                  "parts": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "price": 24.99,
+                      "in_stock": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "ARUF 37C14": {
+          "model_number": "ARUF 37C14",
+          "timestamp": "2025-11-10T15:21:43.871750",
+          "apis_queried": [
+            "goodman",
+            "carrier",
+            "johnstone",
+            "ferguson"
+          ],
+          "results": {
+            "goodman": {
+              "status": "success",
+              "data": {
+                "api": "goodman",
+                "model_number": "ARUF 37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF 37C14",
+                  "description": "Air Handler",
+                  "parts": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "quantity": 1
+                    },
+                    {
+                      "part_number": "B1340021",
+                      "description": "Blower Motor",
+                      "quantity": 1
+                    }
+                  ]
+                }
+              }
+            },
+            "carrier": {
+              "status": "success",
+              "data": {
+                "api": "carrier",
+                "model_number": "ARUF 37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF 37C14",
+                  "description": "Furnace",
+                  "parts": [
+                    {
+                      "part_number": "P291-4053RS",
+                      "description": "Capacitor",
+                      "quantity": 1
+                    }
+                  ]
+                }
+              }
+            },
+            "johnstone": {
+              "status": "success",
+              "data": {
+                "api": "johnstone",
+                "model_number": "ARUF 37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF 37C14",
+                  "parts_list": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "price": 24.99,
+                      "in_stock": true
+                    }
+                  ]
+                }
+              }
+            },
+            "ferguson": {
+              "status": "success",
+              "data": {
+                "api": "ferguson",
+                "model_number": "ARUF 37C14",
+                "status": "found",
+                "data": {
+                  "model": "ARUF 37C14",
+                  "manufacturer": "Goodman",
+                  "parts": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "price": 24.99,
+                      "in_stock": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "aruf37c14": {
+          "model_number": "aruf37c14",
+          "timestamp": "2025-11-10T15:21:43.872459",
+          "apis_queried": [
+            "goodman",
+            "carrier",
+            "johnstone",
+            "ferguson"
+          ],
+          "results": {
+            "goodman": {
+              "status": "success",
+              "data": {
+                "api": "goodman",
+                "model_number": "aruf37c14",
+                "status": "found",
+                "data": {
+                  "model": "aruf37c14",
+                  "description": "Air Handler",
+                  "parts": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "quantity": 1
+                    },
+                    {
+                      "part_number": "B1340021",
+                      "description": "Blower Motor",
+                      "quantity": 1
+                    }
+                  ]
+                }
+              }
+            },
+            "carrier": {
+              "status": "success",
+              "data": {
+                "api": "carrier",
+                "model_number": "aruf37c14",
+                "status": "found",
+                "data": {
+                  "model": "aruf37c14",
+                  "description": "Furnace",
+                  "parts": [
+                    {
+                      "part_number": "P291-4053RS",
+                      "description": "Capacitor",
+                      "quantity": 1
+                    }
+                  ]
+                }
+              }
+            },
+            "johnstone": {
+              "status": "success",
+              "data": {
+                "api": "johnstone",
+                "model_number": "aruf37c14",
+                "status": "found",
+                "data": {
+                  "model": "aruf37c14",
+                  "parts_list": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "price": 24.99,
+                      "in_stock": true
+                    }
+                  ]
+                }
+              }
+            },
+            "ferguson": {
+              "status": "success",
+              "data": {
+                "api": "ferguson",
+                "model_number": "aruf37c14",
+                "status": "found",
+                "data": {
+                  "model": "aruf37c14",
+                  "manufacturer": "Goodman",
+                  "parts": [
+                    {
+                      "part_number": "0131M00008P",
+                      "description": "Capacitor",
+                      "price": 24.99,
+                      "in_stock": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

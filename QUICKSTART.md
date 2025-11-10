@@ -1,368 +1,252 @@
-# Quick Start Guide - Fugitive Data Pipeline
+# Quick Start Guide
 
-This guide walks you through running the complete pipeline from scratch.
+Get up and running with the HVAC Parts Search System in under 5 minutes.
 
-## Prerequisites
-
-- Docker & Docker Compose installed
-- Python 3.11+ installed
-- 8GB+ RAM
-- Internet connection (for scraping)
-
----
-
-## Step 1: Initial Setup (5 minutes)
+## Installation
 
 ```bash
-# Clone and navigate
+# 1. Navigate to the project
 cd Elusive_trades_data
 
-# Install dependencies
-make setup
+# 2. Install dependencies
+pip install -r requirements.txt
 
-# Edit .env with your settings
-cp .env.example .env
-nano .env  # Update passwords and credentials
+# 3. (Optional) Install AI classification support
+pip install transformers torch
 ```
 
-**Important .env settings:**
-```bash
-POSTGRES_PASSWORD=your_secure_password
-NEO4J_PASSWORD=your_secure_password
-```
-
----
-
-## Step 2: Start Infrastructure (2 minutes)
+## Run Tests
 
 ```bash
-# Start all Docker services
-make start
+# Run all tests
+pytest
 
-# Wait 30 seconds for services to initialize, then verify
-docker ps
-
-# You should see 6 containers running:
-# - fugitive-kafka
-# - fugitive-zookeeper
-# - fugitive-postgres
-# - fugitive-neo4j
-# - fugitive-splash
-# - fugitive-kafka-ui
+# Run with coverage report
+pytest --cov
 ```
 
-**Access Web UIs:**
-- Kafka UI: http://localhost:8080
-- Neo4j Browser: http://localhost:7474 (user: neo4j, password: from .env)
+**Result:** All 53 tests should pass ✓
 
----
+## Quick Demo
 
-## Step 3: Initialize Databases (1 minute)
+### Option 1: Run the Demo Script
 
 ```bash
-# Create PostgreSQL schema
-make db-migrate
-
-# Create Neo4j constraints and indexes
-make init-graph-schema
-
-# Create Kafka topics
-make create-topics
-
-# Verify
-make db-status
+python demo.py
 ```
 
----
+This interactive demo shows:
+- Phase 1: API data acquisition
+- Phase 2: Part matching and enrichment
+- Individual component examples
 
-## Step 4: Scrape Real Data (10-30 minutes)
+### Option 2: Python Interactive
 
-### Option A: Test Scraper (Recommended for first run)
+```python
+from phase1_acquisition.orchestrator import APIOrchestrator
 
-```bash
-# Run test spider against real HVAC sites
-make scrape-test
+# Initialize and search
+orchestrator = APIOrchestrator()
+results = orchestrator.search_all_apis("0131M00008P")
 
-# This will:
-# - Scrape actual manufacturer websites (politely)
-# - Respect robots.txt
-# - Use rate limiting (3 second delays)
-# - Extract PDFs and product data
-# - Send to Kafka topics
+# View results
+print(f"Found data from {len(results['results'])} APIs")
+for api_name, result in results['results'].items():
+    print(f"{api_name}: {result['status']}")
 ```
 
-### Option B: Targeted Manufacturers
+## What You Get
 
-```bash
-# Scrape specific manufacturers
-make scrape-goodman
-make scrape-carrier
+### Phase 1: API Data
+All API responses saved to `data/raw/`:
+
+```
+data/raw/
+├── goodman/20251110_144652/
+│   └── part_0131M00008P.json
+├── carrier/20251110_144652/
+│   └── part_0131M00008P.json
+├── johnstone/20251110_144652/
+│   └── part_0131M00008P.json
+├── ferguson/20251110_144652/
+│   └── part_0131M00008P.json
+└── consolidated/
+    └── search_all_0131M00008P_20251110_144652.json
 ```
 
-**Monitor scraping:**
-```bash
-# Watch Kafka messages
-make logs
+### Phase 2: Enriched Data
+Processed data saved to `data/processed/`:
 
-# Or check Kafka UI
-open http://localhost:8080
+```
+data/processed/
+└── 0131M00008P/
+    ├── match_results_20251110_144652.json
+    └── enriched_20251110_144652.json
 ```
 
----
+## Example Workflow
 
-## Step 5: Process Documents (Auto or Manual)
+### Search for a Part
 
-### Auto Mode (Background Processing)
+```python
+from phase1_acquisition.orchestrator import APIOrchestrator
+from phase2_matching.enricher import PartEnricher
 
-```bash
-# Start document processor (runs continuously)
-make process-docs
+# Phase 1: Get data from APIs
+orchestrator = APIOrchestrator()
+api_data = orchestrator.search_all_apis("0131M00008P")
 
-# This will:
-# - Consume from Kafka topics
-# - Download PDFs
-# - Extract text with PyMuPDF
-# - Run OCR on scanned documents
-# - Store in PostgreSQL
+# Phase 2: Enrich the data
+enricher = PartEnricher()
+enriched = enricher.enrich_part("0131M00008P")
+
+# View results
+print(f"Is deprecated: {enriched['status']['is_deprecated']}")
+print(f"Cross-references: {len(enriched['relationships']['cross_references'])}")
+print(f"Confidence: {enriched['confidence_scores']['data_availability']:.2%}")
 ```
 
-### Check Progress
+### Search by Model
 
-```bash
-# In another terminal, check database
-make db-status
+```python
+orchestrator = APIOrchestrator()
+model_data = orchestrator.search_by_model_all_apis("ARUF37C14")
 
-# You should see documents with nlp_status='pending'
+# See which APIs have data for this model
+for api_name, result in model_data['results'].items():
+    if result['status'] == 'success':
+        print(f"{api_name} has data for this model")
 ```
 
----
+### Find Cross-References
 
-## Step 6: Extract Knowledge with NLP (Auto or Manual)
+```python
+from phase2_matching.matcher import PartMatcher
 
-### Manual Mode (Recommended for first run)
+matcher = PartMatcher()
+cross_refs = matcher.find_cross_references("0131M00008P")
 
-```bash
-# Run NLP processor
-make run-nlp
-
-# This will:
-# - Process all pending documents
-# - Run custom NER (Part Numbers, Specs, Manufacturers)
-# - Extract relationships (REPLACES, EQUIVALENT_TO, etc.)
-# - Store entities and relationships in PostgreSQL
+print(f"Found {cross_refs['total_found']} cross-references")
+for ref in cross_refs['cross_references']:
+    print(f"  {ref['manufacturer']}: {ref['part_number']}")
 ```
 
-### Check Extraction Results
+### Classify Text
 
-```bash
-# Connect to PostgreSQL
-make shell-postgres
+```python
+from phase2_matching.classifier import PartStatusClassifier
 
-# Then run:
-SELECT entity_type, COUNT(*)
-FROM entities
-GROUP BY entity_type;
+classifier = PartStatusClassifier()
 
-SELECT relation_type, COUNT(*)
-FROM relationships
-GROUP BY relation_type;
+# Extract part numbers from text
+text = "Compatible with parts 0131M00008P and P291-4053RS"
+parts = classifier.extract_part_numbers_from_text(text)
+print(f"Found parts: {parts}")
 
-\q  # Exit
+# Classify deprecation (requires transformers)
+text = "This part has been discontinued"
+result = classifier.classify_deprecation_status(text)
+print(f"Is deprecated: {result['is_deprecated']}")
 ```
 
----
+## Verify Installation
 
-## Step 7: Populate Knowledge Graph (5 minutes)
+Run this quick verification:
 
-```bash
-# Transfer data from PostgreSQL to Neo4j
-make populate-graph
+```python
+from phase1_acquisition.orchestrator import APIOrchestrator
 
-# This creates:
-# - Part nodes from extracted entities
-# - Spec nodes from specifications
-# - Equipment nodes
-# - Manufacturer nodes
-# - All relationships between them
+orchestrator = APIOrchestrator()
+api_info = orchestrator.get_api_info()
+
+print(f"✓ {api_info['total_apis']} API adapters loaded:")
+for api_name in api_info['apis'].keys():
+    print(f"  - {api_name}")
 ```
 
-### Verify Graph
-
-```bash
-# Open Neo4j shell
-make shell-neo4j
-
-# Run Cypher queries:
-MATCH (n) RETURN labels(n), count(n);
-MATCH ()-[r]->() RETURN type(r), count(r);
-
-# Example: Find replacements
-MATCH (p:Part {part_id: '0131M00008P'})-[:REPLACES]->(r:Part)
-RETURN r.part_id, r.name;
-
-:exit  # Exit
+Expected output:
+```
+✓ 4 API adapters loaded:
+  - goodman
+  - carrier
+  - johnstone
+  - ferguson
 ```
 
-**Or use Neo4j Browser:**
-```bash
-open http://localhost:7474
-# Login: neo4j / password (from .env)
+## Current Status
+
+### Working ✓
+- ✅ All 4 API adapters (Goodman, Carrier, Johnstone, Ferguson)
+- ✅ Multi-API orchestration
+- ✅ File-based data storage
+- ✅ Part number matching
+- ✅ Cross-reference detection
+- ✅ Part number extraction
+- ✅ TDD test coverage (53 tests)
+
+### Mock Data ⚠️
+All APIs currently return **mock data** for development/testing.
+
+To connect to real APIs:
+1. Update `BASE_URL` in each API adapter
+2. Implement actual HTTP requests
+3. Add authentication if needed
+
+### Optional Features
+- **Zero-shot classification**: Requires `transformers` and `torch`
+  - Install with: `pip install transformers torch`
+  - Used for detecting deprecation, replacement, and compatibility info
+
+## File Structure
+
+```
+Elusive_trades_data/
+├── phase1_acquisition/      # API data collection
+│   ├── apis/                # Individual API adapters
+│   └── orchestrator.py      # Multi-API coordinator
+├── phase2_matching/         # Data enrichment
+│   ├── matcher.py           # Part matching
+│   ├── classifier.py        # Zero-shot classification
+│   └── enricher.py          # Complete enrichment
+├── tests/                   # TDD tests
+├── data/                    # All output data (created on first run)
+├── demo.py                  # Interactive demo
+└── README.md                # Full documentation
 ```
 
----
+## Next Steps
 
-## Step 8: Start the API (Instant)
-
-```bash
-# Start FastAPI server
-make run-api
-
-# API is now running at http://localhost:8000
-```
-
-### Test the API
-
-```bash
-# Open interactive API docs
-open http://localhost:8000/docs
-
-# Or use curl:
-curl http://localhost:8000/health
-
-# Look up a part (replace with actual part number from your data)
-curl http://localhost:8000/lookup/part/0131M00008P
-
-# Search by spec
-curl "http://localhost:8000/lookup/spec/?type=MFD&value=40+5"
-
-# Get replacement chain
-curl http://localhost:8000/lookup/graph/replacements/0131M00008P?max_depth=5
-```
-
----
-
-## Step 9: Run Validation Tests
-
-```bash
-# Run integration tests
-make test
-
-# Run real-world scenario tests
-make test-real
-
-# Manual API test
-python -c "
-import httpx
-response = httpx.get('http://localhost:8000/health')
-print(response.json())
-"
-```
-
----
-
-## Common Commands
-
-```bash
-# View all logs
-make logs
-
-# View specific service logs
-docker compose -f docker/docker-compose.yml logs -f kafka
-
-# Stop everything
-make stop
-
-# Restart everything
-make restart
-
-# Clean up
-make clean
-
-# Full reset (WARNING: deletes all data)
-make stop
-docker compose -f docker/docker-compose.yml down -v
-make start
-```
-
----
+1. **Explore the code**: Start with [phase1_acquisition/apis/base_api.py](phase1_acquisition/apis/base_api.py)
+2. **Add new APIs**: Copy an existing adapter and modify
+3. **Connect real endpoints**: Update BASE_URL and implement authentication
+4. **Customize classification**: Edit labels in [phase2_matching/classifier.py](phase2_matching/classifier.py)
 
 ## Troubleshooting
 
-### Services won't start
-
+**Tests failing?**
 ```bash
-# Check Docker
-docker ps
-docker compose -f docker/docker-compose.yml ps
+# Make sure you're in the project directory
+cd Elusive_trades_data
 
-# Check logs
-make logs
+# Install dependencies
+pip install -r requirements.txt
 
-# Common issue: port conflicts
-# Solution: Change ports in docker-compose.yml
+# Run tests
+pytest
 ```
 
-### No data after scraping
+**Import errors?**
+Make sure you're running from the project root directory.
 
-```bash
-# Check Kafka messages
-open http://localhost:8080
+**Missing transformers?**
+This is optional. For basic functionality (API calls, matching), you don't need it.
 
-# Check PostgreSQL
-make shell-postgres
-SELECT COUNT(*) FROM documents;
-```
+## Get Help
 
-### NLP processing stuck
-
-```bash
-# Check NLP status
-make db-status
-
-# Reset NLP status to retry
-make shell-postgres
-UPDATE documents SET nlp_status = 'pending' WHERE nlp_status = 'failed';
-```
-
-### API returns 404 for all parts
-
-```bash
-# Graph might be empty
-make shell-neo4j
-MATCH (n:Part) RETURN count(n);
-
-# If count is 0, run:
-make populate-graph
-```
+- See [README.md](README.md) for full documentation
+- Check test files in `tests/` for usage examples
+- Run `python demo.py` for interactive demonstration
 
 ---
 
-## Performance Tips
-
-1. **Scraping**: Start with `scrape-test` (limited to 10 products per page)
-2. **Processing**: Increase `BATCH_SIZE` in .env for faster NLP
-3. **Neo4j**: Allocate more memory in docker-compose.yml if you have >16GB RAM
-4. **API**: Increase `API_WORKERS` in .env for more concurrent requests
-
----
-
-## What's Next?
-
-1. **Annotate Training Data**: See `docs/TRAINING_DATA.md`
-2. **Fine-tune Models**: See `docs/MODEL_TRAINING.md`
-3. **Production Deployment**: See `docs/DEPLOYMENT.md`
-4. **Add More Spiders**: See `phase1_acquisition/scrapers/spiders/`
-
----
-
-## Success Checklist
-
-- [ ] All 6 Docker containers running
-- [ ] PostgreSQL has documents
-- [ ] Entities and relationships extracted
-- [ ] Neo4j graph populated
-- [ ] API responding at http://localhost:8000
-- [ ] Can query parts via API
-- [ ] Integration tests passing
-
-**If all checked, congratulations! Your pipeline is operational! 🎉**
+**Ready to start?** → `python demo.py`

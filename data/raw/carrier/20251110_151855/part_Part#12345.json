@@ -1,0 +1,20 @@
+{
+  "api": "carrier",
+  "part_number": "Part#12345",
+  "status": "found",
+  "data": {
+    "part_number": "Part#12345",
+    "description": "Run Capacitor 40+5 MFD 440V",
+    "manufacturer": "Carrier",
+    "status": "active",
+    "price": 26.99,
+    "in_stock": true,
+    "specifications": {
+      "voltage": "440V",
+      "capacitance": "40+5 MFD",
+      "type": "Dual Run"
+    },
+    "replaces": [],
+    "replaced_by": null
+  }
+}
