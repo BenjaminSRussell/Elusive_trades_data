@@ -115,9 +115,20 @@ class HVACSearchGUI:
             command=self.save_results
         ).pack(side=tk.LEFT)
 
+        # Progress bar frame
+        progress_frame = ttk.Frame(search_frame)
+        progress_frame.grid(row=3, column=0, columnspan=2, pady=(10, 0), sticky=(tk.W, tk.E))
+        progress_frame.columnconfigure(0, weight=1)
+
+        self.progress_bar = ttk.Progressbar(
+            progress_frame,
+            mode='indeterminate'
+        )
+        self.progress_bar.grid(row=0, column=0, sticky=(tk.W, tk.E))
+
         # Options frame
         options_frame = ttk.Frame(search_frame)
-        options_frame.grid(row=3, column=0, columnspan=2, pady=(10, 0), sticky=tk.W)
+        options_frame.grid(row=4, column=0, columnspan=2, pady=(10, 0), sticky=tk.W)
 
         self.enrich_data = tk.BooleanVar(value=True)
         ttk.Checkbutton(
@@ -145,7 +156,8 @@ class HVACSearchGUI:
             wrap=tk.WORD,
             width=80,
             height=20,
-            font=('Courier', 10)
+            font=('Courier', 10),
+            state='disabled'
         )
         self.results_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
 
@@ -173,9 +185,10 @@ class HVACSearchGUI:
             messagebox.showwarning("Input Required", "Please enter a part or model number.")
             return
 
-        # Disable search button
+        # Disable search button and start progress bar
         self.search_button.config(state='disabled')
         self.searching = True
+        self.progress_bar.start()
         self.status_var.set("Searching...")
 
         # Run search in background thread
@@ -212,16 +225,23 @@ class HVACSearchGUI:
             self.root.after(0, self.display_error, str(e))
 
         finally:
-            # Re-enable search button
-            self.root.after(0, lambda: self.search_button.config(state='normal'))
-            self.searching = False
+            # Dispatch UI state reset via root.after() to ensure thread safety
+            self.root.after(0, self._on_search_finished)
 
     def update_status(self, message):
         """Update status bar (thread-safe)."""
         self.root.after(0, lambda: self.status_var.set(message))
 
+    def _on_search_finished(self):
+        """Handle UI state reset when search completes (called via root.after for thread safety)."""
+        self.search_button.config(state='normal')
+        self.progress_bar.stop()
+        self.searching = False
+
     def display_results(self, search_value, results, enriched=None):
         """Display search results in the text area."""
+        # Temporarily enable text widget for insertion
+        self.results_text.config(state='normal')
         self.results_text.delete(1.0, tk.END)
 
         # Store results
@@ -239,6 +259,8 @@ class HVACSearchGUI:
             # Show formatted results
             self._display_formatted_results(search_value, results, enriched)
 
+        # Disable text widget to prevent user editing
+        self.results_text.config(state='disabled')
         self.status_var.set(f"Search complete for: {search_value}")
 
     def _display_formatted_results(self, search_value, results, enriched):
@@ -340,15 +362,23 @@ class HVACSearchGUI:
 
     def display_error(self, error_message):
         """Display error message."""
+        # Temporarily enable text widget for error insertion
+        self.results_text.config(state='normal')
         self.results_text.delete(1.0, tk.END)
         self.results_text.insert(tk.END, "ERROR:\n\n")
         self.results_text.insert(tk.END, error_message)
+        # Disable text widget to prevent user editing
+        self.results_text.config(state='disabled')
         self.status_var.set("Error occurred")
         messagebox.showerror("Search Error", f"An error occurred:\n\n{error_message}")
 
     def clear_results(self):
         """Clear the results area."""
+        # Temporarily enable text widget to clear it
+        self.results_text.config(state='normal')
         self.results_text.delete(1.0, tk.END)
+        # Keep it disabled after clearing
+        self.results_text.config(state='disabled')
         self.search_entry.delete(0, tk.END)
         self.current_results = None
         self.status_var.set("Ready")
