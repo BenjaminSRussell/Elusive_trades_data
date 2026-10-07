@@ -354,3 +354,26 @@ After annotation:
 - [Label Studio Guide](https://labelstud.io/guide/)
 - [spaCy Training](https://spacy.io/usage/training)
 - [Active Learning](https://prodi.gy/docs/active-learning)
+
+---
+
+## Cross-vendor match Parquet export
+
+Nested JSON under `data/processed/<part>/match_results_*.json` can be flattened for analytics / Data-visualizer:
+
+```bash
+python -m phase2_matching.export_matches --processed-dir data/processed --out data/processed/matches.parquet
+```
+
+Schema (DuckDB-readable):
+
+| column | type | notes |
+|--------|------|-------|
+| part | string | queried part number |
+| vendor | string | API / vendor name (`goodman`, `carrier`, …) |
+| score | float / null | match score when present |
+| url | string | product URL when present |
+| fetched_at | string | ISO timestamp from the match document |
+
+Requires `pyarrow` (`pip install pyarrow`).
+
