@@ -282,3 +282,15 @@ python -m phase3_index.parts_index search 0131M00008P
 
 Index file defaults to `data/parts_index.sqlite`.
 
+## OCR fallback for scanned PDFs (#6)
+
+Native text is preferred. When extract is empty/short, optional OCR runs:
+
+```bash
+pip install pypdf pdf2image pytesseract
+# system: poppler-utils + tesseract-ocr
+python -c "from phase3_index.pdf_ocr import extract_with_ocr_fallback; print(extract_with_ocr_fallback('scan.pdf'))"
+```
+
+Native-text PDFs skip OCR (`source=native`). Scanned PDFs need Tesseract (`source=ocr`).
+
