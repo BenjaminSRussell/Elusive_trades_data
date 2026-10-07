@@ -6,12 +6,16 @@ This module defines the abstract interface that all API adapters must implement.
 
 from abc import ABC, abstractmethod
 from typing import Dict, List, Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 import json
+import os
 from pathlib import Path
 import logging
 
 from phase1_acquisition.safe_names import sanitize_part_token
+
+# Repo-root fixtures for mock mode (default until live APIs are wired)
+_FIXTURE_ROOT = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "vendor_mocks"
 
 logger = logging.getLogger(__name__)
 
@@ -81,6 +85,55 @@ class BaseAPI(ABC):
         """
         pass
 
+
+    @property
+    def acquisition_mode(self) -> str:
+        """Return mock|live from ACQUISITION_MODE (default mock)."""
+        mode = (os.environ.get("ACQUISITION_MODE") or "mock").strip().lower()
+        return mode if mode in {"mock", "live"} else "mock"
+
+    def _stamp(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Attach source + fetched_at to every saved/returned payload."""
+        out = dict(payload)
+        out.setdefault("source", self.acquisition_mode)
+        out.setdefault(
+            "fetched_at",
+            datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        )
+        return out
+
+    def load_mock_catalog(self) -> Dict[str, Any]:
+        """Load vendor fixture table keyed by part number."""
+        path = _FIXTURE_ROOT / f"{self.api_name}.json"
+        if not path.exists():
+            return {}
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            return data if isinstance(data, dict) else {}
+        except (OSError, json.JSONDecodeError):
+            return {}
+
+    def mock_part_lookup(self, part_number: str, *, kind: str = "part") -> Dict[str, Any]:
+        """Return found fixture row or not_found — never invent unknown parts."""
+        key = (part_number or "").strip()
+        catalog = self.load_mock_catalog()
+        row = catalog.get(key)
+        if row is None:
+            payload = {
+                "api": self.api_name,
+                "part_number" if kind == "part" else "model_number": key,
+                "status": "not_found",
+                "data": None,
+            }
+            return self._stamp(payload)
+        payload = {
+            "api": self.api_name,
+            "part_number": key,
+            "status": "found",
+            "data": {"part_number": key, **row},
+        }
+        return self._stamp(payload)
+
     def save_response(self, data: Dict[str, Any], filename: str) -> Path:
         """
         Save API response to a JSON file.
@@ -97,8 +150,9 @@ class BaseAPI(ABC):
         if not str(filepath).startswith(str(self.api_output_dir.resolve())):
             raise ValueError(f"Refusing to write outside API output dir: {filename!r}")
 
+        stamped = self._stamp(data)
         with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+            json.dump(stamped, f, indent=2, ensure_ascii=False)
 
         logger.info(f"Saved response to {filepath}")
         return filepath

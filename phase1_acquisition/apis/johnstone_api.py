@@ -50,52 +50,16 @@ class JohnstoneAPI(BaseAPI):
         """
         logger.info(f"Searching Johnstone API for part number: {part_number}")
 
-        # TODO: Replace with actual Johnstone API endpoint
-        mock_data = {
-            "api": "johnstone",
-            "part_number": part_number,
-            "status": "found",
-            "data": {
-                "part_number": part_number,
-                "description": "Dual Round Capacitor 40+5 MFD 440V",
-                "manufacturer": "Multiple Brands Available",
-                "in_stock": True,
-                "pricing": {
-                    "retail": 29.99,
-                    "contractor": 21.99
-                },
-                "availability": {
-                    "warehouse": True,
-                    "local_branch": True,
-                    "quantity_available": 45
-                },
-                "brands": [
-                    {
-                        "name": "Goodman",
-                        "part_number": "0131M00008P",
-                        "price": 24.99
-                    },
-                    {
-                        "name": "Carrier",
-                        "part_number": "P291-4053RS",
-                        "price": 26.99
-                    },
-                    {
-                        "name": "Universal",
-                        "part_number": "C4405R",
-                        "price": 19.99
-                    }
-                ],
-                "specifications": {
-                    "voltage": "440V",
-                    "capacitance": "40+5 MFD",
-                    "type": "Dual Round"
-                }
-            }
-        }
+        if self.acquisition_mode == "mock":
+            result = self.mock_part_lookup(part_number, kind="part")
+            self.save_response(result, f"part_{part_number}")
+            return result
 
-        self.save_response(mock_data, f"part_{part_number}")
-        return mock_data
+        # Live endpoints not wired yet — keep fixture lookup (never invent unknown parts)
+        result = self.mock_part_lookup(part_number, kind="part")
+        result = self._stamp({**result, "source": "mock", "live_fallback": True})
+        self.save_response(result, f"part_{part_number}")
+        return result
 
     def search_by_model(self, model_number: str) -> Dict[str, Any]:
         """

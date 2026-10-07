@@ -228,6 +228,23 @@ class HVACSearchGUI:
             # Dispatch UI state reset via root.after() to ensure thread safety
             self.root.after(0, self._on_search_finished)
 
+
+    def _maybe_show_mock_banner(self, results):
+        """Show a visible MOCK DATA banner when any payload is mock-sourced."""
+        payloads = []
+        if isinstance(results, dict):
+            for v in results.values():
+                if isinstance(v, dict):
+                    payloads.append(v)
+                elif isinstance(v, list):
+                    payloads.extend([x for x in v if isinstance(x, dict)])
+        mockish = any(
+            (p.get("source") == "mock") or p.get("live_fallback")
+            for p in payloads
+        )
+        if mockish:
+            self.results_text.insert(tk.END, "\n*** MOCK DATA — not live vendor prices/stock ***\n\n")
+
     def update_status(self, message):
         """Update status bar (thread-safe)."""
         self.root.after(0, lambda: self.status_var.set(message))
@@ -243,6 +260,7 @@ class HVACSearchGUI:
         # Temporarily enable text widget for insertion
         self.results_text.config(state='normal')
         self.results_text.delete(1.0, tk.END)
+        self._maybe_show_mock_banner(results)
 
         # Store results
         self.current_results = {
