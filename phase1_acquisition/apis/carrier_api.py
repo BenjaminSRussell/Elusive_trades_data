@@ -50,30 +50,16 @@ class CarrierAPI(BaseAPI):
         """
         logger.info(f"Searching Carrier API for part number: {part_number}")
 
-        # TODO: Replace with actual Carrier API endpoint
-        mock_data = {
-            "api": "carrier",
-            "part_number": part_number,
-            "status": "found",
-            "data": {
-                "part_number": part_number,
-                "description": "Run Capacitor 40+5 MFD 440V",
-                "manufacturer": "Carrier",
-                "status": "active",
-                "price": 26.99,
-                "in_stock": True,
-                "specifications": {
-                    "voltage": "440V",
-                    "capacitance": "40+5 MFD",
-                    "type": "Dual Run"
-                },
-                "replaces": [],
-                "replaced_by": None
-            }
-        }
+        if self.acquisition_mode == "mock":
+            result = self.mock_part_lookup(part_number, kind="part")
+            self.save_response(result, f"part_{part_number}")
+            return result
 
-        self.save_response(mock_data, f"part_{part_number}")
-        return mock_data
+        # Live endpoints not wired yet — keep fixture lookup (never invent unknown parts)
+        result = self.mock_part_lookup(part_number, kind="part")
+        result = self._stamp({**result, "source": "mock", "live_fallback": True})
+        self.save_response(result, f"part_{part_number}")
+        return result
 
     def search_by_model(self, model_number: str) -> Dict[str, Any]:
         """

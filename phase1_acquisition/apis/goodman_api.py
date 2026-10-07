@@ -55,47 +55,47 @@ class GoodmanAPI(BaseAPI):
         """
         logger.info(f"Searching Goodman API for part number: {part_number}")
 
-        # TODO: Replace with actual Goodman API endpoint
-        # endpoint = f"{self.BASE_URL}/parts/search"
-        # params = {"partNumber": part_number}
-        #
-        # try:
-        #     response = self.session.get(endpoint, params=params, timeout=self.timeout)
-        #     response.raise_for_status()
-        #     data = response.json()
-        #
-        #     # Save the response automatically
-        #     self.save_response(data, f"part_{part_number}")
-        #     return data
-        #
-        # except requests.exceptions.RequestException as e:
-        #     logger.error(f"Error searching for part {part_number}: {e}")
-        #     return {"error": str(e), "part_number": part_number}
+        if self.acquisition_mode == "mock":
+            result = self.mock_part_lookup(part_number, kind="part")
+            self.save_response(result, f"part_{part_number}")
+            return result
 
-        # Mock response for development/testing
-        mock_data = {
-            "api": "goodman",
-            "part_number": part_number,
-            "status": "found",
-            "data": {
+        # Live mode: attempt real HTTP (may 404 against placeholder BASE_URL)
+        endpoint = f"{self.BASE_URL}/parts/search"
+        try:
+            response = self.session.get(
+                endpoint, params={"partNumber": part_number}, timeout=self.timeout
+            )
+            if response.status_code == 404:
+                result = self._stamp({
+                    "api": "goodman",
+                    "part_number": part_number,
+                    "status": "not_found",
+                    "data": None,
+                })
+                self.save_response(result, f"part_{part_number}")
+                return result
+            response.raise_for_status()
+            data = response.json()
+            if isinstance(data, dict):
+                data = self._stamp({**data, "api": "goodman", "status": data.get("status", "found")})
+            else:
+                data = self._stamp({"api": "goodman", "part_number": part_number, "status": "found", "data": data})
+            self.save_response(data, f"part_{part_number}")
+            return data
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Error searching Goodman for part {part_number}: {e}")
+            result = self._stamp({
+                "api": "goodman",
                 "part_number": part_number,
-                "description": "Capacitor, Dual Run 40+5 MFD",
-                "manufacturer": "Goodman",
-                "status": "active",
-                "price": 24.99,
-                "in_stock": True,
-                "specifications": {
-                    "voltage": "440V",
-                    "type": "Dual Run Capacitor",
-                    "mfd": "40+5"
-                },
-                "replacements": [],
-                "superseded_by": None
-            }
-        }
+                "status": "not_found",
+                "error": str(e),
+                "data": None,
+            })
+            self.save_response(result, f"part_{part_number}")
+            return result
 
-        self.save_response(mock_data, f"part_{part_number}")
-        return mock_data
+
 
     def search_by_model(self, model_number: str) -> Dict[str, Any]:
         """

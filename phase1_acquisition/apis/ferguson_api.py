@@ -50,38 +50,16 @@ class FergusonAPI(BaseAPI):
         """
         logger.info(f"Searching Ferguson API for part number: {part_number}")
 
-        # TODO: Replace with actual Ferguson API endpoint
-        mock_data = {
-            "api": "ferguson",
-            "part_number": part_number,
-            "status": "found",
-            "data": {
-                "part_number": part_number,
-                "description": "Capacitor 40/5 MFD 440V Round",
-                "manufacturer": "Various",
-                "in_stock": True,
-                "price": 27.50,
-                "availability": {
-                    "warehouse": True,
-                    "ship_time": "1-2 days",
-                    "stock_quantity": 120
-                },
-                "specifications": {
-                    "voltage": "440V",
-                    "capacitance": "40/5 MFD",
-                    "type": "Dual Run",
-                    "shape": "Round"
-                },
-                "product_info": {
-                    "upc": "123456789012",
-                    "weight": "1.5 lbs",
-                    "dimensions": "2.5\" x 5.5\""
-                }
-            }
-        }
+        if self.acquisition_mode == "mock":
+            result = self.mock_part_lookup(part_number, kind="part")
+            self.save_response(result, f"part_{part_number}")
+            return result
 
-        self.save_response(mock_data, f"part_{part_number}")
-        return mock_data
+        # Live endpoints not wired yet — keep fixture lookup (never invent unknown parts)
+        result = self.mock_part_lookup(part_number, kind="part")
+        result = self._stamp({**result, "source": "mock", "live_fallback": True})
+        self.save_response(result, f"part_{part_number}")
+        return result
 
     def search_by_model(self, model_number: str) -> Dict[str, Any]:
         """
