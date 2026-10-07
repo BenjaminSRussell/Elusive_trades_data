@@ -6,6 +6,7 @@ This module coordinates data collection from multiple HVAC parts APIs.
 
 from typing import List, Dict, Any, Optional
 import logging
+from phase1_acquisition.apis.base_api import sanitize_part_filename
 from pathlib import Path
 import json
 from datetime import datetime
@@ -52,6 +53,8 @@ class APIOrchestrator:
 
     def search_all_apis(self, part_number: str) -> Dict[str, Any]:
         """
+        if part_number is None or not str(part_number).strip():
+            raise ValueError("part number is empty or whitespace-only")
         Search for a part number across all APIs.
 
         Args:
@@ -256,11 +259,15 @@ class APIOrchestrator:
         Returns:
             Path to the saved file
         """
+        from phase1_acquisition.apis.base_api import BaseAPI
+        safe = BaseAPI._sanitize_filename(filename)
         consolidated_dir = self.output_dir / "consolidated"
         consolidated_dir.mkdir(parents=True, exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filepath = consolidated_dir / f"{filename}_{timestamp}.json"
+        filepath = (consolidated_dir / f"{safe}_{timestamp}.json").resolve()
+        if not str(filepath).startswith(str(consolidated_dir.resolve())):
+            raise ValueError(f"refusing to write outside consolidated dir: {filename!r}")
 
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)

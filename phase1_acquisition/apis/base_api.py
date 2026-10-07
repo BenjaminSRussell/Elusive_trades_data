@@ -10,8 +10,35 @@ from datetime import datetime
 import json
 from pathlib import Path
 import logging
+import re
 
 logger = logging.getLogger(__name__)
+
+def sanitize_part_filename(raw: str, *, max_len: int = 120) -> str:
+    """Turn a user-supplied part/model number into a safe single path segment.
+
+    Rejects empty/whitespace-only values. Strips path separators and control
+    characters so ``../``, ``/``, newlines, and ``#`` cannot escape the output dir.
+    """
+    if raw is None:
+        raise ValueError("part number is required")
+    s = str(raw).strip()
+    if not s:
+        raise ValueError("part number is empty or whitespace-only")
+    # Replace path separators and other filesystem-hostile chars
+    s = re.sub(r'[\/\x00-\x1f\x7f#]+', '_', s)
+    s = re.sub(r'\s+', '_', s)
+    s = s.strip('._')
+    if not s:
+        raise ValueError("part number is empty after sanitization")
+    if len(s) > max_len:
+        s = s[:max_len]
+    # Block residual parent-dir references
+    if s in {'.', '..'} or '..' in s:
+        raise ValueError(f"refusing unsafe part filename: {raw!r}")
+    return s
+
+
 
 
 class BaseAPI(ABC):
@@ -85,18 +112,37 @@ class BaseAPI(ABC):
 
         Args:
             data: The data to save
-            filename: Name of the file (without extension)
+            filename: Name of the file (without extension). May include a
+                prefix like ``part_``; the part token is sanitized.
 
         Returns:
             Path to the saved file
         """
-        filepath = self.api_output_dir / f"{filename}.json"
+        safe_name = self._sanitize_filename(filename)
+        filepath = self.api_output_dir / f"{safe_name}.json"
+        # Ensure resolve stays under api_output_dir (no path escape)
+        filepath = filepath.resolve()
+        if not str(filepath).startswith(str(self.api_output_dir.resolve())):
+            raise ValueError(f"refusing to write outside output dir: {filename!r}")
 
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 
         logger.info(f"Saved response to {filepath}")
         return filepath
+
+    @staticmethod
+    def _sanitize_filename(filename: str) -> str:
+        """Sanitize a response filename that may be ``prefix_`` + part number."""
+        if filename is None or not str(filename).strip():
+            raise ValueError("filename is empty or whitespace-only")
+        name = str(filename).strip()
+        # Preserve a short known prefix so part_/model_ stay readable
+        for prefix in ('part_', 'model_', 'details_', 'xref_', 'category_', 'search_all_', 'details_all_', 'model_all_'):
+            if name.startswith(prefix):
+                rest = name[len(prefix):]
+                return prefix + sanitize_part_filename(rest)
+        return sanitize_part_filename(name)
 
     def load_response(self, filename: str) -> Optional[Dict[str, Any]]:
         """

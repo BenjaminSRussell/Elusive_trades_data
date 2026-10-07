@@ -44,6 +44,8 @@ class PartMatcher:
 
     def search_part(self, part_number: str) -> Dict[str, Any]:
         """
+        if part_number is None or not str(part_number).strip():
+            raise ValueError("part number is empty or whitespace-only")
         Search for a part across all available API data.
 
         Args:
@@ -180,8 +182,19 @@ class PartMatcher:
         Returns:
             Normalized part number
         """
+        if part_number is None or not str(part_number).strip():
+            raise ValueError("part number is empty or whitespace-only")
         # Remove spaces, dashes, and convert to uppercase
         return re.sub(r'[\s\-]', '', part_number).upper()
+
+    def _safe_part_dirname(self, part_number: str) -> str:
+        """Filesystem-safe single path segment for a part number."""
+        from phase1_acquisition.apis.base_api import sanitize_part_filename
+        # Prefer comparison-normalized form when it is already safe
+        try:
+            return sanitize_part_filename(self._normalize_part_number(part_number))
+        except ValueError:
+            return sanitize_part_filename(part_number)
 
     def _extract_relationships(self, results: Dict[str, Any]):
         """
@@ -274,7 +287,7 @@ class PartMatcher:
             part_number: Part number (used in filename)
         """
         # Create directory for this part
-        part_dir = self.output_dir / self._normalize_part_number(part_number)
+        part_dir = self.output_dir / self._safe_part_dirname(part_number)
         part_dir.mkdir(parents=True, exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -295,7 +308,7 @@ class PartMatcher:
         Returns:
             List of all previous search results
         """
-        part_dir = self.output_dir / self._normalize_part_number(part_number)
+        part_dir = self.output_dir / self._safe_part_dirname(part_number)
 
         if not part_dir.exists():
             logger.info(f"No history found for {part_number}")
