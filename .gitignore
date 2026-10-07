@@ -89,3 +89,4 @@ htmlcov/
 data/raw/
 data/processed/
 tests/output/
+api_test_report.json
