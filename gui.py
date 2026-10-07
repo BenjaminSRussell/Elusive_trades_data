@@ -18,6 +18,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from phase1_acquisition.orchestrator import APIOrchestrator
 from phase2_matching.enricher import PartEnricher
+from phase3_index.parts_index import PartsIndex
+import os
+import subprocess
+import webbrowser
 
 
 class HVACSearchGUI:
@@ -32,9 +36,17 @@ class HVACSearchGUI:
         # Initialize components
         self.orchestrator = APIOrchestrator()
         self.enricher = PartEnricher()
+        self.fts_db = Path(os.environ.get("PARTS_INDEX_DB", "data/parts_index.sqlite"))
+        self.parts_index = None
+        if self.fts_db.exists():
+            try:
+                self.parts_index = PartsIndex(self.fts_db)
+            except Exception as exc:
+                print(f"FTS index unavailable: {exc}")
 
         # Search state
         self.searching = False
+        self._last_fts_hits = []
 
         # Create GUI elements
         self.create_widgets()
@@ -57,7 +69,10 @@ class HVACSearchGUI:
             text="HVAC Parts Search System",
             font=('Arial', 16, 'bold')
         )
-        title_label.grid(row=0, column=0, pady=(0, 20))
+        title_label.grid(row=0, column=0, pady=(0, 10))
+
+        self.index_banner = ttk.Label(main_frame, text=self._index_banner_text(), foreground="#333")
+        self.index_banner.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=(0, 10))
 
         # Search frame
         search_frame = ttk.LabelFrame(main_frame, text="Search", padding="10")
@@ -83,6 +98,13 @@ class HVACSearchGUI:
             text="Model Number",
             variable=self.search_type,
             value="model"
+        ).pack(side=tk.LEFT, padx=(0, 20))
+
+        ttk.Radiobutton(
+            type_frame,
+            text="FTS Index",
+            variable=self.search_type,
+            value="fts"
         ).pack(side=tk.LEFT)
 
         # Input field
@@ -204,7 +226,12 @@ class HVACSearchGUI:
             # Phase 1: API search
             self.update_status(f"Phase 1: Searching APIs for {search_value}...")
 
-            if search_type == "part":
+            if search_type == "fts":
+                results = self._fts_search(search_value)
+                enriched = None
+                self.root.after(0, self.display_results, search_value, results, enriched)
+                return
+            elif search_type == "part":
                 results = self.orchestrator.search_all_apis(search_value)
             else:  # model
                 results = self.orchestrator.search_by_model_all_apis(search_value)
@@ -273,6 +300,8 @@ class HVACSearchGUI:
         if self.show_raw.get():
             # Show raw JSON
             self.results_text.insert(tk.END, json.dumps(self.current_results, indent=2))
+        elif isinstance(results, dict) and results.get("source") == "fts":
+            self._display_fts_results(results)
         else:
             # Show formatted results
             self._display_formatted_results(search_value, results, enriched)
