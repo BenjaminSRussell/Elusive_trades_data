@@ -11,6 +11,8 @@ import json
 import os
 from pathlib import Path
 import logging
+import time
+import threading
 
 from phase1_acquisition.safe_names import sanitize_part_token
 
@@ -18,6 +20,59 @@ from phase1_acquisition.safe_names import sanitize_part_token
 _FIXTURE_ROOT = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "vendor_mocks"
 
 logger = logging.getLogger(__name__)
+
+
+
+class RateLimiter:
+    """Simple per-adapter RPM limiter with 429 exponential backoff."""
+
+    def __init__(self, requests_per_minute: float | None = None, max_retries: int = 3):
+        env_rpm = os.environ.get("VENDOR_RPM") or os.environ.get(
+            f"VENDOR_RPM_{os.environ.get('VENDOR_NAME', '').upper()}", ""
+        )
+        self.rpm = float(requests_per_minute or env_rpm or 30)
+        self.min_interval = 60.0 / self.rpm if self.rpm > 0 else 0.0
+        self.max_retries = int(os.environ.get("VENDOR_MAX_RETRIES", max_retries))
+        self._lock = threading.Lock()
+        self._last_request = 0.0
+        self._clock = time.monotonic
+
+    def wait_turn(self) -> float:
+        """Block until under RPM; return seconds slept (for tests)."""
+        slept = 0.0
+        with self._lock:
+            now = self._clock()
+            earliest = self._last_request + self.min_interval
+            if now < earliest:
+                delay = earliest - now
+                time.sleep(delay)
+                slept = delay
+                now = self._clock()
+            self._last_request = now
+        return slept
+
+    def request_with_retry(self, do_request):
+        """Call do_request() after wait_turn; retry on HTTP 429 with backoff.
+
+        do_request should return an object with `.status_code` (requests.Response)
+        or a mapping with key status_code. Non-429 results are returned as-is.
+        """
+        delay = 1.0
+        last = None
+        for attempt in range(self.max_retries + 1):
+            self.wait_turn()
+            last = do_request()
+            status = getattr(last, "status_code", None)
+            if status is None and isinstance(last, dict):
+                status = last.get("status_code")
+            if status != 429:
+                return last
+            if attempt >= self.max_retries:
+                break
+            logger.warning("HTTP 429 — backing off %.1fs (attempt %s)", delay, attempt + 1)
+            time.sleep(delay)
+            delay = min(delay * 2, 60.0)
+        return last
 
 
 class BaseAPI(ABC):
@@ -43,6 +98,9 @@ class BaseAPI(ABC):
         self.api_output_dir = self.output_dir / self.api_name / self.session_timestamp
         self.api_output_dir.mkdir(parents=True, exist_ok=True)
 
+        env_key = f"VENDOR_RPM_{self.api_name.upper()}"
+        rpm = os.environ.get(env_key) or os.environ.get("VENDOR_RPM")
+        self.rate_limiter = RateLimiter(requests_per_minute=float(rpm) if rpm else None)
         logger.info(f"Initialized {self.api_name} API adapter")
         logger.info(f"Output directory: {self.api_output_dir}")
 
@@ -101,6 +159,15 @@ class BaseAPI(ABC):
             datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         )
         return out
+
+
+    def http_get(self, url: str, **kwargs):
+        """GET with shared RPM limiter + 429 retry (for live adapters)."""
+        session = getattr(self, "session", None)
+        if session is None:
+            import requests
+            session = requests
+        return self.rate_limiter.request_with_retry(lambda: session.get(url, **kwargs))
 
     def load_mock_catalog(self) -> Dict[str, Any]:
         """Load vendor fixture table keyed by part number."""
