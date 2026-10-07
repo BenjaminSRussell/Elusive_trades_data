@@ -196,6 +196,79 @@ class HVACSearchGUI:
         # Store current results
         self.current_results = None
 
+
+    def _index_banner_text(self) -> str:
+        """Index freshness banner for FTS DB (#5)."""
+        if not self.fts_db.exists():
+            return "FTS index: missing (run phase3_index.parts_index ingest)"
+        mtime = datetime.fromtimestamp(self.fts_db.stat().st_mtime)
+        age_h = (datetime.now() - mtime).total_seconds() / 3600
+        stale = " STALE" if age_h > 24 else ""
+        docs = "?"
+        if self.parts_index is not None:
+            try:
+                row = self.parts_index.conn.execute("SELECT COUNT(*) FROM documents").fetchone()
+                docs = row[0]
+            except Exception:
+                pass
+        return (
+            f"FTS index: {self.fts_db} | docs={docs} | "
+            f"mtime={mtime.isoformat(timespec='seconds')}{stale}"
+        )
+
+    def _fts_search(self, query: str) -> dict:
+        if self.parts_index is None:
+            return {"status": "error", "error": "FTS index not available", "hits": []}
+        hits = self.parts_index.search(query, limit=50)
+        self._last_fts_hits = hits
+        return {"status": "ok", "source": "fts", "hits": hits, "count": len(hits)}
+
+    def _open_pdf_at_page(self, document: str, page_ref):
+        """Best-effort jump-to-page via system viewer (#5)."""
+        path = Path(document)
+        if not path.exists():
+            messagebox.showinfo("PDF", f"Document not found locally: {document}")
+            return
+        page = int(page_ref) if page_ref is not None else 1
+        for cmd in (
+            ["evince", f"--page-index={page}", str(path)],
+            ["okular", "-p", str(page), str(path)],
+            ["xdg-open", str(path)],
+        ):
+            try:
+                subprocess.Popen(cmd)
+                return
+            except FileNotFoundError:
+                continue
+        webbrowser.open(path.as_uri())
+
+    def _display_fts_results(self, results: dict):
+        """Render FTS hits (#5)."""
+        hits = results.get("hits") or []
+        self.results_text.insert(tk.END, f"FTS hits: {len(hits)}\n")
+        self.results_text.insert(
+            tk.END, "(Select a hit line and press Ctrl+O to open PDF at page)\n\n"
+        )
+        for i, h in enumerate(hits, 1):
+            line = (
+                f"{i}. {h.get('part_number')}  page={h.get('page_ref')}  "
+                f"{h.get('description') or ''}  [{h.get('document')}]\n"
+            )
+            self.results_text.insert(tk.END, line)
+        self.results_text.bind("<Control-o>", self._on_open_selected_hit)
+        self.status_var.set(f"FTS: {len(hits)} hits")
+
+    def _on_open_selected_hit(self, event=None):
+        try:
+            line_no = int(self.results_text.index("insert").split(".")[0])
+        except Exception:
+            return
+        idx = line_no - 3
+        if idx < 0 or idx >= len(self._last_fts_hits):
+            return
+        hit = self._last_fts_hits[idx]
+        self._open_pdf_at_page(hit.get("document") or "", hit.get("page_ref"))
+
     def perform_search(self):
         """Perform the search in a background thread."""
         if self.searching:
