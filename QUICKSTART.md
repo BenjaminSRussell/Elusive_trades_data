@@ -254,3 +254,20 @@ This is optional. For basic functionality (API calls, matching), you don't need 
 ## Vendor rate limits
 Defaults: 30 RPM via `RateLimiter` on each adapter. Override with `VENDOR_RPM` or `VENDOR_RPM_<VENDOR>` (e.g. `VENDOR_RPM_CARRIER=20`). 429 responses retry with exponential backoff (`VENDOR_MAX_RETRIES`, default 3).
 
+## Optional: Scrapy-Splash for JS-heavy pages
+
+Lua helpers live under `phase1_acquisition/splash_scripts/`. **Splash is optional.**
+
+Default / CI path uses plain HTTP (`httpx` or `requests`) via
+`phase1_acquisition.html_fetch.fetch_html` — no Docker required.
+
+To enable Splash:
+
+```bash
+# e.g. docker run -p 8050:8050 scrapinghub/splash
+export SPLASH_URL=http://localhost:8050
+```
+
+When `SPLASH_URL` is unset, Lua scripts are not used. Prefer mock acquisition
+(`ACQUISITION_MODE=mock`, the default) for offline demos.
+
