@@ -250,3 +250,7 @@ This is optional. For basic functionality (API calls, matching), you don't need 
 ---
 
 **Ready to start?** → `python demo.py`
+
+## Vendor rate limits
+Defaults: 30 RPM via `RateLimiter` on each adapter. Override with `VENDOR_RPM` or `VENDOR_RPM_<VENDOR>` (e.g. `VENDOR_RPM_CARRIER=20`). 429 responses retry with exponential backoff (`VENDOR_MAX_RETRIES`, default 3).
+
