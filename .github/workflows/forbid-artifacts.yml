@@ -1,0 +1,17 @@
+name: Forbid tracked runtime artifacts
+on:
+  push:
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail if runtime paths are tracked
+        run: |
+          bad=$(git ls-files | grep -E '^(data/raw/|data/processed/|tests/output/|api_test_report\.json$)' || true)
+          if [ -n "$bad" ]; then
+            echo "Tracked forbidden paths:"
+            echo "$bad"
+            exit 1
+          fi
