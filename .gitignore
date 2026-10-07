@@ -84,3 +84,8 @@ htmlcov/
 # spaCy
 *.spacy
 *.jsonl
+
+# Runtime artifacts (#7)
+data/raw/
+data/processed/
+tests/output/

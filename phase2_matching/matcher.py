@@ -11,6 +11,8 @@ import logging
 from datetime import datetime
 import re
 
+from phase1_acquisition.safe_names import sanitize_part_token
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -52,6 +54,9 @@ class PartMatcher:
         Returns:
             Dictionary containing all matching data found
         """
+        if part_number is None or not str(part_number).strip():
+            raise ValueError("part_number must be a non-empty string")
+
         logger.info(f"Searching for part number: {part_number}")
 
         results = {
@@ -108,11 +113,17 @@ class PartMatcher:
         """
         matches = []
 
-        # Iterate through all session directories
-        for session_dir in api_dir.iterdir():
-            if not session_dir.is_dir():
-                continue
+        # Prefer the newest session directory only (avoid duplicate historical matches #14)
+        session_dirs = sorted(
+            (p for p in api_dir.iterdir() if p.is_dir()),
+            key=lambda p: p.name,
+            reverse=True,
+        )
+        if not session_dirs:
+            return matches
+        session_dir = session_dirs[0]
 
+        for session_dir in (session_dir,):
             # Search all JSON files in this session
             for json_file in session_dir.glob("*.json"):
                 try:
@@ -172,7 +183,7 @@ class PartMatcher:
 
     def _normalize_part_number(self, part_number: str) -> str:
         """
-        Normalize a part number for comparison.
+        Normalize a part number for comparison (not for filesystem paths).
 
         Args:
             part_number: Part number to normalize
@@ -180,8 +191,13 @@ class PartMatcher:
         Returns:
             Normalized part number
         """
-        # Remove spaces, dashes, and convert to uppercase
-        return re.sub(r'[\s\-]', '', part_number).upper()
+        if part_number is None:
+            return ""
+        return re.sub(r'[\s\-]', '', str(part_number)).upper()
+
+    def _safe_part_dirname(self, part_number: str) -> str:
+        """Filesystem-safe directory name for a part number (#15)."""
+        return sanitize_part_token(part_number)
 
     def _extract_relationships(self, results: Dict[str, Any]):
         """
@@ -192,29 +208,38 @@ class PartMatcher:
         """
         for match in results["matches"]:
             data = match.get("data", {})
+            # Vendor payloads often nest the payload under data["data"] (#14)
+            nested = data.get("data") if isinstance(data, dict) else None
+            layers = [data]
+            if isinstance(nested, dict):
+                layers.append(nested)
 
-            # Look for cross-references
-            if "cross_references" in data:
-                refs = data["cross_references"]
-                if isinstance(refs, list):
-                    results["cross_references"].extend(refs)
+            for layer in layers:
+                if not isinstance(layer, dict):
+                    continue
 
-            # Look for replacements
-            if "replaces" in data or "replacements" in data:
-                replacements = data.get("replaces", data.get("replacements", []))
-                if replacements:
-                    results["replacements"].extend(replacements)
-                    results["summary"]["has_replacement"] = True
+                # Look for cross-references
+                if "cross_references" in layer:
+                    refs = layer["cross_references"]
+                    if isinstance(refs, list):
+                        results["cross_references"].extend(refs)
 
-            # Check for replacement info
-            if "replaced_by" in data or "superseded_by" in data:
-                replacement = data.get("replaced_by") or data.get("superseded_by")
-                if replacement:
-                    results["replacements"].append({
-                        "type": "replaced_by",
-                        "part_number": replacement
-                    })
-                    results["summary"]["has_replacement"] = True
+                # Look for replacements
+                if "replaces" in layer or "replacements" in layer:
+                    replacements = layer.get("replaces", layer.get("replacements", []))
+                    if replacements:
+                        results["replacements"].extend(replacements)
+                        results["summary"]["has_replacement"] = True
+
+                # Check for replacement info
+                if "replaced_by" in layer or "superseded_by" in layer:
+                    replacement = layer.get("replaced_by") or layer.get("superseded_by")
+                    if replacement:
+                        results["replacements"].append({
+                            "type": "replaced_by",
+                            "part_number": replacement
+                        })
+                        results["summary"]["has_replacement"] = True
 
     def find_cross_references(self, part_number: str) -> Dict[str, Any]:
         """
@@ -274,7 +299,7 @@ class PartMatcher:
             part_number: Part number (used in filename)
         """
         # Create directory for this part
-        part_dir = self.output_dir / self._normalize_part_number(part_number)
+        part_dir = self.output_dir / self._safe_part_dirname(part_number)
         part_dir.mkdir(parents=True, exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -295,7 +320,7 @@ class PartMatcher:
         Returns:
             List of all previous search results
         """
-        part_dir = self.output_dir / self._normalize_part_number(part_number)
+        part_dir = self.output_dir / self._safe_part_dirname(part_number)
 
         if not part_dir.exists():
             logger.info(f"No history found for {part_number}")

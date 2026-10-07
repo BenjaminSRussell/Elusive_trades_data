@@ -7,6 +7,8 @@ This module coordinates data collection from multiple HVAC parts APIs.
 from typing import List, Dict, Any, Optional
 import logging
 from pathlib import Path
+
+from phase1_acquisition.safe_names import sanitize_part_token
 import json
 from datetime import datetime
 
@@ -260,7 +262,10 @@ class APIOrchestrator:
         consolidated_dir.mkdir(parents=True, exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filepath = consolidated_dir / f"{filename}_{timestamp}.json"
+        safe = sanitize_part_token(filename)
+        filepath = (consolidated_dir / f"{safe}_{timestamp}.json").resolve()
+        if not str(filepath).startswith(str(consolidated_dir.resolve())):
+            raise ValueError(f"Refusing to write outside consolidated dir: {filename!r}")
 
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)

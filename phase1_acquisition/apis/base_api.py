@@ -11,6 +11,8 @@ import json
 from pathlib import Path
 import logging
 
+from phase1_acquisition.safe_names import sanitize_part_token
+
 logger = logging.getLogger(__name__)
 
 
@@ -90,7 +92,10 @@ class BaseAPI(ABC):
         Returns:
             Path to the saved file
         """
-        filepath = self.api_output_dir / f"{filename}.json"
+        safe = sanitize_part_token(filename)
+        filepath = (self.api_output_dir / f"{safe}.json").resolve()
+        if not str(filepath).startswith(str(self.api_output_dir.resolve())):
+            raise ValueError(f"Refusing to write outside API output dir: {filename!r}")
 
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
