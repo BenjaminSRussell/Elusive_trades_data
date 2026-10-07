@@ -271,3 +271,14 @@ export SPLASH_URL=http://localhost:8050
 When `SPLASH_URL` is unset, Lua scripts are not used. Prefer mock acquisition
 (`ACQUISITION_MODE=mock`, the default) for offline demos.
 
+## Parts FTS5 index
+
+Build a searchable SQLite FTS5 index of part numbers (no Splash needed):
+
+```bash
+python -m phase3_index.parts_index ingest --document sample.pdf --parts-json parts.json
+python -m phase3_index.parts_index search 0131M00008P
+```
+
+Index file defaults to `data/parts_index.sqlite`.
+
